@@ -19,12 +19,8 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
-// ouvrir une fenetre
-function ouvrir() {
-  window.open();
-}
 // fermer la fenetre
 function fermer() {
-  window.close();
+  fenetre.style.display = "none";
 }
 

@@ -31,6 +31,12 @@ const validfirst = function (inputfirst) {
   expfirst = /^[A-Za-z-]{2,20}$/;
   window.testfirst = expfirst.test(inputfirst.value);
   console.log(window.testfirst);
+  if (window.testfirst == false) {
+  document.getElementById("prenom").textContent = "Veuillez entrer un prénom valide";
+  prenom.style.color = "red";
+  prenom.style.fontSize = "15px";
+  first.style.border = "2px solid red";
+  }
 };
 // valider le nom
 reserve.last.addEventListener ("change", function () {
@@ -66,23 +72,39 @@ reserve.quantity.addEventListener ("change", function () {
 const validquantity = function (inputquantity) {
   expquantity = /^[0-9]{1,2}$/;
   window.testquantity = expquantity.test(inputquantity.value);
+  window.quantity = inputquantity.value;
   console.log(window.testquantity);
+  console.log(inputquantity.value);
 };
-// valider la selection de type radio
-reserve.quantity.addEventListener ("click", function () {
-  validlocation (this);
-});
-const validlocation = function () {
+// valider la selection checked
+function loc () {
   window.testlocation = document.querySelector('input[name=location]:checked');
-  console.log(window.testlocation);
-};
-// valider le formulaire
-function validate() {
-  if ((window.testfirst)&&(window.testlast)&&(window.testemail)&&(window.testbirthdate)&&(window.testquantity)) {
+  window.testcond = document.querySelector('input[name=cond]:checked');
+  if ((window.quantity==0)&&(!window.testlocation)&&(window.testcond)) {
+    console.log("quantité 0");
     return true
   }
+  if ((window.quantity>0)&&(window.testlocation)&&(window.testcond)) {
+    console.log("quantité > 0");
+    return true;
+  }
+
   else {
-    return false
+    console.log("nok");
+    return false;
+  }
+}
+// click sur submit
+reserve.submit.addEventListener ("click", function () {console.log (loc())})
+
+
+// valider le formulaire
+function validate() {
+  if ((window.testfirst)&&(window.testlast)&&(window.testemail)&&(window.testbirthdate)&&(window.testquantity)&&(loc())) {
+    return true;
+  }
+  else {
+    return false;
   }
 }
 

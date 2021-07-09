@@ -58,7 +58,7 @@
           <div class="modal-body">
             <form
               name="reserve"
-              action="form.php"
+              action="#"
               method="post"
               onsubmit="return validate();"
             >
@@ -83,6 +83,7 @@
                   id="last"
                   name="last"
                 /><br>
+                <span id="nom"></span>
               </div>
               <div
                 class="formData">
@@ -186,6 +187,7 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
+                  name="cond"
                   checked
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
@@ -202,6 +204,7 @@
               </div>
               <input
                 class="btn-submit"
+                id="submit"
                 type="submit"
                 class="button"
                 value="C'est parti"

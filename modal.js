@@ -171,8 +171,6 @@ function validate() {
     return false
   }
   else {
-    modalbg.style.display = "none";
-    modalcg.style.display = "block";
     return false
   }
 };

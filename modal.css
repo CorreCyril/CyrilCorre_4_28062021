@@ -478,6 +478,28 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+.congratulation {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+.modal-cong {
+  padding: 15px 8%;
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+}
+#txt {
+  text-align: center;
+}
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;

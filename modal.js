@@ -11,6 +11,15 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+let firstisvalid = false;
+let lastisvalid = false;
+let emailisvalid = false;
+let birthdateisvalid = false;
+let quantityisvalid = false;
+let checkedisvalid = false;
+const modalcg = document.querySelector(".congratulation");
+
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -29,23 +38,43 @@ reserve.first.addEventListener ("change", function () {
 });
 const validfirst = function (inputfirst) {
   expfirst = /^[A-Za-z-]{2,20}$/;
-  window.testfirst = expfirst.test(inputfirst.value);
-  console.log(window.testfirst);
-  if (window.testfirst == false) {
-  document.getElementById("prenom").textContent = "Veuillez entrer un prénom valide";
-  prenom.style.color = "red";
+  console.log(firstisvalid);
+  document.getElementById("prenom").textContent = "";
+  prenom.style.color = "black";
   prenom.style.fontSize = "15px";
-  first.style.border = "2px solid red";
+  first.style.border = "0px solid red";
+  if (expfirst.test(inputfirst.value)) {
+    firstisvalid = true;
+  }
+  else {
+    document.getElementById("prenom").textContent = "Veuillez entrer un prénom valide";
+    prenom.style.color = "red";
+    prenom.style.fontSize = "15px";
+    first.style.border = "2px solid red";
+    firstisvalid = false;
   }
 };
+
 // valider le nom
 reserve.last.addEventListener ("change", function () {
   validlast (this);
 });
 const validlast = function (inputlast) {
   explast = /^[A-Za-z-]{2,20}$/;
-  window.testlast = explast.test(inputlast.value);
-  console.log(window.testlast);
+  document.getElementById("nom").textContent = "";
+  nom.style.color = "black";
+  nom.style.fontSize = "15px";
+  last.style.border = "0px solid red";
+  if (explast.test(inputlast.value)) {
+    lastisvalid = true;
+  }
+  else {
+    document.getElementById("nom").textContent = "Veuillez entrer un nom valide";
+    nom.style.color = "red";
+    nom.style.fontSize = "15px";
+    last.style.border = "2px solid red";
+    lastisvalid = false;
+  }
 };
 // valider l'email
 reserve.email.addEventListener ("change", function () {
@@ -53,8 +82,20 @@ reserve.email.addEventListener ("change", function () {
 });
 const validemail = function (inputemail) {
   expemail = /^([a-zA-Z0-9]+(([\.\-\_]?[a-zA-Z0-9]+)+)?)\@(([a-zA-Z0-9]+[\.\-\_])+[a-zA-Z]{2,4})$/;
-  window.testemail = expemail.test(inputemail.value);
-  console.log(window.testemail);
+  document.getElementById("courriel").textContent = "";
+  courriel.style.color = "black";
+  courriel.style.fontSize = "15px";
+  email.style.border = "0px solid red";
+  if (expemail.test(inputemail.value)) {
+    emailisvalid = true;
+  }
+  else {
+    document.getElementById("courriel").textContent = "Veuillez entrer un email valide";
+    courriel.style.color = "red";
+    courriel.style.fontSize = "15px";
+    email.style.border = "2px solid red";
+    emailisvalid = false;
+  }
 };
 // valider la date de naissance
 reserve.birthdate.addEventListener ("change", function () {
@@ -62,50 +103,82 @@ reserve.birthdate.addEventListener ("change", function () {
 });
 const validbirthdate = function (inputbirthdate) {
   expbirthdate = /^\d{4}-\d\d-\d\d$/;
-  window.testbirthdate = expbirthdate.test(inputbirthdate.value);
-  console.log(window.testbirthdate);
+  document.getElementById("date").textContent = "";
+  date.style.color = "black";
+  date.style.fontSize = "15px";
+  birthdate.style.border = "0px solid red";
+  if (expbirthdate.test(inputbirthdate.value)) {
+    birthdateisvalid = true;
+  }
+  else {
+    document.getElementById("date").textContent = "Veuillez entrer une date valide";
+    date.style.color = "red";
+    date.style.fontSize = "15px";
+    birthdate.style.border = "2px solid red";
+    birthdateisvalid = false;
+  }
 };
-// valider le nombre de concours
+// valider la quantité
 reserve.quantity.addEventListener ("change", function () {
   validquantity (this);
 });
 const validquantity = function (inputquantity) {
   expquantity = /^[0-9]{1,2}$/;
-  window.testquantity = expquantity.test(inputquantity.value);
-  window.quantity = inputquantity.value;
-  console.log(window.testquantity);
-  console.log(inputquantity.value);
-};
-// valider la selection checked
-function loc () {
-  window.testlocation = document.querySelector('input[name=location]:checked');
-  window.testcond = document.querySelector('input[name=cond]:checked');
-  if ((window.quantity==0)&&(!window.testlocation)&&(window.testcond)) {
-    console.log("quantité 0");
-    return true
+  document.getElementById("quantite").textContent = "";
+  quantite.style.color = "black";
+  quantite.style.fontSize = "15px";
+  quantity.style.border = "0px solid red";
+  if (expquantity.test(inputquantity.value)) {
+    quantityisvalid = true;
   }
-  if ((window.quantity>0)&&(window.testlocation)&&(window.testcond)) {
-    console.log("quantité > 0");
-    return true;
-  }
-
   else {
-    console.log("nok");
-    return false;
+    document.getElementById("quantite").textContent = "Veuillez entrer un nombre valide";
+    quantite.style.color = "red";
+    quantite.style.fontSize = "15px";
+    quantity.style.border = "2px solid red";
+    quantityisvalid = false;
   }
-}
-// click sur submit
-reserve.submit.addEventListener ("click", function () {console.log (loc())})
-
+};
+// valider le check
+function check() {
+ document.getElementById("coche").textContent = "";
+ coche.style.color = "black";
+ coche.style.fontSize = "15px";
+ if ((quantity.value==0)
+    &&(!document.querySelector('input[name=location]:checked'))
+    &&(document.querySelector('input[name=cond]:checked'))) {
+    checkedisvalid = true;
+  }
+  if ((quantity.value>0)
+    &&(document.querySelector('input[name=location]:checked'))
+    &&(document.querySelector('input[name=cond]:checked'))) {
+    checkedisvalid = true;
+  }
+ else {
+    document.getElementById("coche").textContent = "Veuillez bien cocher";
+    coche.style.color = "red";
+    coche.style.fontSize = "15px";
+    checkedisvalid = false;
+  }
+};
+reserve.submit.addEventListener ("click", check);
 
 // valider le formulaire
 function validate() {
-  if ((window.testfirst)&&(window.testlast)&&(window.testemail)&&(window.testbirthdate)&&(window.testquantity)&&(loc())) {
-    return true;
+  if ((firstisvalid)&&(lastisvalid)&&(emailisvalid)&&(birthdateisvalid)&&(quantityisvalid)&&(checkedisvalid)) {
+    modalbg.style.display = "none";
+    modalcg.style.display = "block";
+    return false
   }
   else {
-    return false;
+    modalbg.style.display = "none";
+    modalcg.style.display = "block";
+    return false
   }
-}
+};
+// fermer fenetre congratulation
+function croix() {
+  modalcg.style.display = "none";
+};
 
 

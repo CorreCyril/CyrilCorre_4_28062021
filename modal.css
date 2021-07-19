@@ -543,8 +543,11 @@ footer {
     text-align: center;
   }
 }
+.bground {
+  top: 90px;
+}
 .congratulation {
-  top: 70px;
+  top: 90px;
 }
 .content {
   border-bottom-left-radius: 0px;
